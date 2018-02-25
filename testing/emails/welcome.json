@@ -1,0 +1,23 @@
+{
+  "name": "welcome",
+  "view": "main",
+  "from": "Team {{country}}",
+  "content": {
+    "en": {
+      "subject": "Welcome, {{firstname}} {{lastname}}!",
+      "body": {
+        "heading": "Nice to meet you!",
+        "main": "Great to have you onboard. This is an email to just say Hi! Let us know if there is anything we can do for you and ask our lovely community for help, too. Now enjoy the ride.",
+        "footer": "See you around - the team"
+      }
+    },
+    "de": {
+      "subject": "Willkommen, {{firstname}} {{lastname}}",
+      "body": {
+        "heading": "Herzlich willkommen!",
+        "main": "Wir freuen uns dich bei uns begrüssen zu dürfen. Mit dieser Email wollen wir nur mal kurz Hallo sagen. Lass uns wissen wenn du fragen hast und unsere aktive Community hilft auch immer gern weiter. Viel Spass!",
+        "footer": "Bis bald - dein Team"
+      }
+    }
+  }
+}

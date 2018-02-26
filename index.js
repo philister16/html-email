@@ -33,14 +33,25 @@ class HtmlEmail {
     return JSON.parse(email);
   }
 
+  /** Loads an html file containing the view template of emails. The html templates can contain variables which correspond with either properties in the json email templates or variables that are passed as properties of the context object passed to the body() method. Variables are denoted with the double curly braces handlebars syntax (i.e. {{someVariable}})
+   * @param {string} name - name of the email html view to load
+   */
   loadView(name) {
     return fs.readFileSync(path.join(this.viewsPath, name + '.html')).toString();
   }
 
+  /** Loads the content of a specific language
+   * @param {string} lang - the language to load, needs to correspond to a defined language property in the content object
+   * @param {object} content - an object containing all contents, typically retrieved via loadEmail() method from the email template json file
+   */
   loadContent(lang, content) {
     return content[lang];
   }
 
+  /** Adds variables contextual variables passed from the code to the rest of the body
+   * @param {object} body - object with the content blocks as properties
+   * @param {object} context - object with the additional variables as properties
+   */
   prepareVars(body, context) {
     if (context === undefined) {
       const context = {};
@@ -48,6 +59,10 @@ class HtmlEmail {
     return Object.assign(body, context);
   }
 
+  /** Replaces a string encapsulated in double curly braces with the strings defined in the properties of the context object
+   * @param {string} string - the string containing the text with defined variables
+   * @param {object} context - object with the context variables as properties
+   */
   replaceString(string, context) {
     if (context === undefined) {
       return string;
@@ -61,11 +76,19 @@ class HtmlEmail {
     }
   }
 
+  /** Compiles the template with handlebars, replacing all variables with the corresponding content
+   * @param {string} html - the html view as a string containing variables denoted with the double curly braces syntax (i.e. {{someVariable}})
+   * @param {object} vars - object with properties corresponding to the variables defined in the html view
+   */
   compileTemplate(html, vars) {
     const template = hbs.compile(html);
     return template(vars)
   }
 
+  /** Returns the compiled email body as a string
+   * @param {object} [context] - contextual variables as object properties passed from the code
+   * @return {string} The html of the email as a string
+   */
   body(context) {
     const email = this.loadEmail(this.name);
     const html = this.loadView(email.view);
@@ -76,6 +99,10 @@ class HtmlEmail {
     return template;
   }
 
+  /** Returns the compiled subject line as a string
+   * @param {object} [context] - contextual variables as object properties passed from the code
+   * @return {string} The subject line of the email as a string
+   */
   subject(context) {
     const email = this.loadEmail(this.name);
     let subject = this.loadContent(this.lang, email.content).subject;
@@ -84,6 +111,10 @@ class HtmlEmail {
     return subject;
   }
 
+  /** Returns the from field as a string
+   * @param {object} [context] - contextual variables as object properties passed from the code
+   * @return {string} The from field as a string
+   */
   from(context) {
     const email = this.loadEmail(this.name);
     let from = email.from;

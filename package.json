@@ -1,6 +1,6 @@
 {
   "name": "html-email",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Creates html emails from handlebar templates with custom variables and content",
   "main": "index.js",
   "scripts": {

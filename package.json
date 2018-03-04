@@ -7,6 +7,10 @@
     "test": "node testing/app",
     "docs": "jsdoc -R ./readme.md index.js -d ./docs"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philister16/html-email"
+  },
   "keywords": [
     "email",
     "editor",

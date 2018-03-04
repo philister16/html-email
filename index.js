@@ -17,11 +17,11 @@ class HtmlEmail {
     this.name = name;
     this.lang = lang;
     if (options !== undefined) {
-      this.emailsPath = path.join(path.resolve(__dirname), options.emailsPath);
-      this.viewsPath = path.join(path.resolve(__dirname), options.viewsPath);
+      this.emailsPath = path.join(path.resolve(__dirname), '..', '..', options.emailsPath);
+      this.viewsPath = path.join(path.resolve(__dirname), '..', '..', options.viewsPath);
     } else {
-      this.emailsPath = path.join(path.resolve(__dirname), 'emails');
-      this.viewsPath = path.join(path.resolve(__dirname), 'views');
+      this.emailsPath = path.join(path.resolve(__dirname), '..', '..', 'emails');
+      this.viewsPath = path.join(path.resolve(__dirname), '..', '..', 'emails');
     }
   }
 
@@ -95,7 +95,6 @@ class HtmlEmail {
     const body = this.loadContent(this.lang, email.content).body;
     const vars = this.prepareVars(body, context);
     const template = this.compileTemplate(html, vars);
-    console.log(template);
     return template;
   }
 
@@ -107,7 +106,6 @@ class HtmlEmail {
     const email = this.loadEmail(this.name);
     let subject = this.loadContent(this.lang, email.content).subject;
     subject = this.replaceString(subject, context);
-    console.log(subject);
     return subject;
   }
 
@@ -119,7 +117,6 @@ class HtmlEmail {
     const email = this.loadEmail(this.name);
     let from = email.from;
     from = this.replaceString(from, context);
-    console.log(from);
     return from;
   }
 }

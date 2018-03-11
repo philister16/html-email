@@ -54,24 +54,28 @@ Create an html view that uses the contents of the template json. As many content
 In the node app require the module and use its 3 main methods: body(), subject() and from().
 
 ```javascript
-const HtmlEmail = require('../index');
+const HtmlEmail = require('html-email');
 
-const email = new HtmlEmail('welcome', 'en', {
-  emailsPath: 'testing/emails',
-  viewsPath: 'testing/views'
-});
+const email = new HtmlEmail('welcome', 'en');
 email.body({
   link: 'http://www.rhinerock.com'
 });
 email.subject({
-  firstname: 'Phil',
+  firstname: 'John',
   lastname: 'Nash'
 });
 email.from({
   country: 'Switzerland'
 });
 ```
+By default the email json templates are expected in a `/emails` folder and the html views in a `/views` folder at the root of the project. The constructor takes an optional third argument which is a configuration object to configure these folders.
 
+```javascript
+const email = new HtmlEmail('welcome', 'en', {
+  emailsPath: 'path/to/email.json',
+  viewsPath: 'path/to/view.html'
+});
+```
 ## License
 
 Copyright 2018 Philipp S. Nueesch

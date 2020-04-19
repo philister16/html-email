@@ -1,6 +1,6 @@
 {
   "name": "html-email",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Creates html emails from handlebar templates with custom variables and content.",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "handlebars",
     "mail"
   ],
-  "author": "Philipp S. Nueesch <phil@rhinerock.com>",
+  "author": "philister16 <phil@rhinerock.com>",
   "license": "MIT",
   "dependencies": {
     "handlebars": "^4.1.2"
